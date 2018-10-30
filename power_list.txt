@@ -1,0 +1,67 @@
+f
+Fire Sigil
+Granite Monument
+Granite Waystone
+Shugo Standard
+t
+Time Sigil
+Amber Monument
+Amber Waystone
+Temple Standard
+j
+Justice Sigil
+Crownwatch Standard
+Emerald Monument
+Emerald Waystone
+p
+Clan Standard
+Cobalt Monument
+Cobalt Waystone
+Primal Sigil
+s 
+Shadow Sigil
+Amethyst Monument
+Amethyst Waystone
+Cabal Standard
+ft
+Crest of Impulse
+Praxis Banner
+Seat of Impulse
+fj
+Crest of Glory
+Rakano Banner
+Seat of Glory
+tj
+Combrei Banner
+Crest of Progress
+Seat of Progress
+pt
+Crest of Wisdom
+Elysian Banner
+Seat of Wisdom
+pj
+Crest of Order
+Hooru Banner
+Seat of Order
+js 
+Argenport Banner
+Crest of Vengeance
+Seat of Vengeance
+fp
+Crest of Fury
+Seat of Fury
+Skycrag Banner
+ps 
+Crest of Cunning
+Feln Banner
+Seat of Cunning
+fs
+Crest of Chaos
+Seat of Chaos
+Stonescar Banner
+ts 
+Crest of Mystery
+Seat of Mystery
+Xenan Banner
+c
+Diplomatic Seal
