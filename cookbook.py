@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from read_list import read_exported_list
 
 def cookbook_run(turn_played=2, draw_p=1):
-    power = read_exported_list('ghp_haunted.txt')
+    power = read_exported_list('decklists/ghp_haunted.txt')
     deck = Deck(power)
     deck.draw_7()
     damage_taken = 0
@@ -43,12 +43,24 @@ for i in range(num_runs):
 
 expected_total_damage = [float(x)/num_runs for x in total_damage]
 prob_dying = [sum([x > 25 for x in y])/num_runs for y in damage_during_turn_x]
+
+sds = [np.std(x) for x in damage_during_turn_x]
 # plt.plot(range(len(prob_dying)), prob_dying)
 # plt.xlabel('Turn')
 # plt.ylabel('Probability of dying')
 # plt.show()
 
-plt.plot(range(len(expected_total_damage[:50])), [x/5+1 for x in expected_total_damage[:50]])
+plt.plot(range(len(expected_total_damage[:50])), [x for x in expected_total_damage[:50]], 'k-')
+lower_bound = [x-2*y for x,y in zip(expected_total_damage[:50],sds)]
+upper_bound = [x+2*y for x,y in zip(expected_total_damage[:50],sds)]
+plt.fill_between(range(50), lower_bound, upper_bound, alpha=0.5, edgecolor='#CC4F1B', facecolor='#FF9848')
+lower_bound = [x-y for x,y in zip(expected_total_damage[:50],sds)]
+upper_bound = [x+y for x,y in zip(expected_total_damage[:50],sds)]
+plt.fill_between(range(50), lower_bound, upper_bound)
+
+print(expected_total_damage[15])
+print(sds[15])
+
 plt.xlabel('Turn')
-plt.ylabel('Alessi\'s power and toughness')
+plt.ylabel('expected total damage with SDs')
 plt.show()
