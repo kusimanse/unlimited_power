@@ -16,13 +16,16 @@ def cookbook_run(turn_played=2, draw_p=1):
         damage_across_turns.append(damage_taken)
     while len(deck.deck) > 0:
         card = deck.draw()
-        if card == 'firebomb':
+        while card == 'firebomb':
             damage_taken += 5
+            card = deck.draw()
+
         if np.random.random() < draw_p:
             deck.add_card('firebomb')
             card = deck.draw()
-            if card == 'firebomb':
+            while card == 'firebomb':
                 damage_taken += 5
+                card = deck.draw()
         damage_across_turns.append(damage_taken)
     return damage_across_turns
 

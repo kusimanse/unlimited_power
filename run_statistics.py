@@ -2,9 +2,9 @@ import numpy as np
 
 def calculate_statistics(runs, num_runs, target={}):
 	#target: the target power base.  For example, hh is {'s':2, 'f':2, 'p': 1} (maybe p is 2?)
-	expected = {'p':0, 'f': 0, 'j': 0, 's': 0, 't': 0, 'total': 0}
-	probabilities = {'p':0, 'f': 0, 'j': 0, 's': 0, 't': 0, 'total': 0}
-	double_power_probs =  {'p':0, 'f': 0, 'j': 0, 's': 0, 't': 0, 'total': 0}
+	expected = {'P':0, 'F': 0, 'J': 0, 'S': 0, 'T': 0, 'total': 0}
+	probabilities = {'P':0, 'F': 0, 'J': 0, 'S': 0, 'T': 0, 'total': 0}
+	double_power_probs =  {'P':0, 'F': 0, 'J': 0, 'S': 0, 'T': 0, 'total': 0}
 	target_probs = []
 	for key in expected:
 		expected[key] =  [sum([x[key] for x in y])/num_runs for y in runs]
