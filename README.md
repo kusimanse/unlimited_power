@@ -21,7 +21,7 @@ A program to simulate Eternal card power bases. Example usage: python run.py
 -d decklists/cranky_fjs.txt -m
 
 optional arguments:
-  -h, --help            show this help message and exit
+  -h, --help            show this help message and exit . 
   -d DECKLIST, --decklist DECKLIST
                         Path to the decklist
   -r RUNS, --runs RUNS  number of times to run the simulation
