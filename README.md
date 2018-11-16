@@ -3,8 +3,11 @@
 A basic monte carlo simulator for Eternal (https://www.direwolfdigital.com/eternal/).
 
 How to run:
+
 Prerequisites:
+
 Download the card base json from: https://eternalwarcry.com/cards/download and move it to this folder
+
 Python 3.x with numpy (it should run with python 2, but you need to change the print statements)
 
 If you aren't familiar with python, I recommend using anaconda (https://www.anaconda.com/download/)-it makes it super easy to install numpy and anything else.  Once anaconda is installed, open terminal or command prompt and run:
@@ -12,6 +15,7 @@ If you aren't familiar with python, I recommend using anaconda (https://www.anac
 conda install numpy 
 
 Then, cd to the folder where unlimited power is:
+
 cd /path/to/unlimited_power
 
 From here, you can run simulations using run.py.  To see how to run it, run python run.py -h
