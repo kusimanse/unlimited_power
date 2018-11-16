@@ -20,7 +20,7 @@ class SimpleBot:
         if draw_method == 'mulligan':
             self.deck.draw_mulligan(num_power=mulligan_power)
         elif draw_method == 'complex':
-            self.deck.draw_7()
+            self.deck.draw_initial_7()
             total_power = self.deck.gamestate.drawn_power['total']
             complex_target = {x:1 for x in self.target}
             hit_complex_target = True
@@ -31,9 +31,12 @@ class SimpleBot:
             if not hit_complex_target:
                 self.deck.reset()
                 self.deck.draw_mulligan()
-        else:
+        elif draw_method == 'initial':
+            self.deck.draw_initial_7()
+        elif draw_method == 'second':
+            self.deck.draw_second_mulligan()
+        elif draw_method == 'seven':
             self.deck.draw_7()
-
     #a basic step towards more complicated play-at the moment it just handles diplo seal stupidly.
     def play_turn(self):
         self.deck.draw()
@@ -44,6 +47,10 @@ class SimpleBot:
             if card.acquire_influence(self.deck.gamestate):
                 (max_key, total_difference) = self.distance_from_target()
                 self.deck.play_card('Diplomatic Seal', influence=max_key)
+        if 'Privilege of Rank' in [x.name for x in self.deck.gamestate.hand]:
+            if self.deck.play_card('Privilege of Rank'):
+                self.deck.play_seek('J')
+                self.deck.play_seek('J')
         else:
             #play a random power for now
             if np.any([isinstance(x, Power) for x in self.deck.gamestate.hand]):
@@ -56,8 +63,6 @@ class SimpleBot:
                 self.deck.play_seek(max_key)
                 self.deck.play_card('Seek Power')
         self.power_drawn_per_turn.append(dict(self.deck.gamestate.drawn_power))
-
-
 
     #a simple method of choosing which influence is missing
     def distance_from_target(self, seek=False):
@@ -76,22 +81,3 @@ class SimpleBot:
                 max_key = key
         return (max_key, total_difference)
 
-
-num_runs = 100000
-turns_per_run = 10
-runs = []
-for i in range(num_runs):
-    bot = SimpleBot('decklists/wind_herald_seek.txt', draw_method='mulligan', target = {'F':1, 'P':2, 'S':2})
-    [bot.play_turn() for x in range(turns_per_run)]
-    power_per_turn = bot.power_drawn_per_turn
-    if len(runs) == 0:
-        runs = [[x] for x in power_per_turn]
-    else:
-        [x.append(y) for x,y in zip(runs, power_per_turn)]
-
-statistics = calculate_statistics(runs, num_runs, target = {'F':1, 'S':2, 'P':2, 'total': 6})
-
-print()
-for s in statistics:
-    print(s)
-    print()

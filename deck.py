@@ -107,10 +107,23 @@ class Deck:
             hand.append(card)
         return hand
 
+    def draw_second_mulligan(self, num_power=0):
+        hand = []
+        if num_power == 0:
+            num_power = np.random.randint(2,5)
+        for i in range(num_power):
+            card = self.draw_power()
+            hand.append(card)
+        for i in range(6-num_power):
+            self.draw_non_power()
+            hand.append(card)
+        return hand
+
+
     #checks to see if we can play a card's influence
     def check_influence(self, card):
         if isinstance(card, Power):
-            return True
+            return True            
         influence_reqs = card.influence
         power_reqs = card.cost
 

@@ -58,8 +58,8 @@ def tabulate_influence_requirements(decklist):
         else:
             reqs = {faction: 0 for faction in influence}
         for faction in influence:
-            reqs[faction] = max([inf.count(faction) for inf in cards] + [reqs[faction]])
+            reqs[faction] = max([inf[faction] for inf in cards if faction in inf] + [reqs[faction]])
         turn_reqs.append(reqs)
-    return turn_reqs
+    return turn_reqs, card_reqs
     
     

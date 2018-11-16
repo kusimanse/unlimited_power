@@ -26,3 +26,21 @@ def calculate_statistics(runs, num_runs, target={}):
 			turn_count += 1
 
 	return expected, probabilities, double_power_probs, target_probs
+
+def visualize_statistics(statistics_dict):
+	titles = ['expected values:', 'single power probabilities:', 'double power probabilities:', 'target probabilities:']
+	for idx, t in enumerate(titles[:-1]):
+		print()
+		print(t)
+		for faction in {'P':0, 'F': 0, 'J': 0, 'S': 0, 'T': 0, 'total': 0}:
+			for key in statistics_dict:
+				statistics = statistics_dict[key]
+				probs = statistics[idx][faction]
+				if sum(probs) > 0.1:
+					print(key + ' ' + faction+','+','.join([str(x) for x in probs]))
+			print()
+	print()
+	print(titles[-1])
+	for key in statistics_dict:
+		statistics = statistics_dict[key]
+		print(key + ', ' + ','.join([str(x) for x in statistics[-1]]))
