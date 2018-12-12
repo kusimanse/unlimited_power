@@ -33,12 +33,15 @@ def visualize_statistics(statistics_dict):
 		print()
 		print(t)
 		for faction in {'P':0, 'F': 0, 'J': 0, 'S': 0, 'T': 0, 'total': 0}:
+			if faction == 'total' and idx > 0:
+				continue
 			for key in statistics_dict:
 				statistics = statistics_dict[key]
 				probs = statistics[idx][faction]
 				if sum(probs) > 0.1:
 					print(key + ' ' + faction+','+','.join([str(x) for x in probs]))
-			print()
+			if len(statistics_dict) > 1:
+				print()
 	print()
 	print(titles[-1])
 	for key in statistics_dict:

@@ -43,7 +43,7 @@ class EternalCard(object):
         self.cost = self.entry["Cost"]
         self.influence = convert_influence(self.entry["Influence"])
         self.market = market
-    
+        self.text = self.entry['CardText'].lower()
     def copy(self):
         return EternalCard(name=self.name)
     

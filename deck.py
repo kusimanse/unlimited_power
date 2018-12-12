@@ -137,15 +137,17 @@ class Deck:
     #plays a given card from hand, returns true if sucessful, false otherwise
     #the influence is for cards that let you choose an influence to add-say Diplomatic Seal
     #need to define where the card goes-units to board, relics to relic, etc.
-    def play_card(self, card_name, influence='C'):
-        idxs = [0 if x.name == card_name else 1 for x in self.gamestate.hand]
+    def play_card(self, card_name, influence='C', free=False):
+        idxs = [1 if x.name == card_name else 0 for x in self.gamestate.hand]
 
         if np.any(idxs):
-            idx = idxs.index(0)
+            idx = idxs.index(1)
             card = self.gamestate.hand[idx]
-            if not self.check_influence(card):
+
+            if not self.check_influence(card) and not free:
                 return False
             del(self.gamestate.hand[idx])
+
             if isinstance(card, Power):
                 for c in card.influence:
                     if c != 'C':
@@ -153,6 +155,7 @@ class Deck:
                 self.gamestate.played_power['total'] += 1
                 if influence != 'C':
                     self.gamestate.drawn_power[influence] += 1
+                    
             return True
         return False
 
