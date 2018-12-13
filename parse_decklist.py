@@ -11,7 +11,7 @@ def read_exported_list(file_name):
     
     with open(file_name) as f:
         export_list = f.read().split('\n')
-    
+    export_list = [x for x in export_list if x]
     return parse_export(export_list)
 
 def parse_export(exported_list):

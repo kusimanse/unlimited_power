@@ -55,6 +55,10 @@ class SimpleBot:
             if self.deck.play_card('Privilege of Rank'):
                 self.deck.play_seek('J')
                 self.deck.play_seek('J')
+        if 'Vara\'s Favor' in [x.name for x in self.deck.gamestate.hand]:
+            if self.deck.play_card('Vara\'s Favor'):
+                self.deck.play_seek('S')
+
         if 'Diplomatic Seal' in [x.name for x in self.deck.gamestate.hand]:
             idx = np.random.choice([i for i, x in enumerate(self.deck.gamestate.hand) if x.name == 'Diplomatic Seal'])
             card = self.deck.gamestate.hand[idx]
